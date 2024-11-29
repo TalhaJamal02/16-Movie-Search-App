@@ -32,21 +32,30 @@ function MovieSearch() {
     setError(null);
     setMovieDetails(null);
     try {
-      const response = await fetch(
-        `https://www.omdbapi.com/?t=${searchTerm}&apikey=${process.env.NEXT_PUBLIC_OMDB_API_KEY}`)
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      if (data.Response === "False") {
-        throw new Error(data.Error);
-      }
-      setMovieDetails(data);
-    } catch (error: any) {
-      setError(error.message || "An unexpected error occurred");
-    } finally {
-      setLoading(false);
-    }
+  const response = await fetch(
+    `https://www.omdbapi.com/?t=${searchTerm}&apikey=${process.env.NEXT_PUBLIC_OMDB_API_KEY}`
+  );
+
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  const data = await response.json();
+
+  if (data.Response === "False") {
+    throw new Error(data.Error);
+  }
+
+  setMovieDetails(data);
+} catch (error: unknown) {
+  if (error instanceof Error) {
+    setError(error.message || "An unexpected error occurred");
+  } else {
+    setError("An unexpected error occurred");
+  }
+} finally {
+  setLoading(false);
+}
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
