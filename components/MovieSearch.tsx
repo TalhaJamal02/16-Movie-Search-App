@@ -64,8 +64,8 @@ function MovieSearch() {
 
   return (
     <div>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-        <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-md">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200 p-4">
+        <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-xl">
           <h1 className="text-3xl font-bold mb-1 text-center">Movie Search</h1>
           <p className="mb-6 text-center text-sm md:text-base">
             Search for any movies and display details.
